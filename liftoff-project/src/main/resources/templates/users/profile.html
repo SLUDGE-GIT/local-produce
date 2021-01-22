@@ -38,6 +38,14 @@ USER PROFILE
                                 <p class="font-weight-bold">Email</p>
                                 <h6 class="text-muted" th:text="${vendor.email}"></h6>
                             </div>
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold">Phone</p>
+                                <h6 class="text-muted">314-xxx-xxxx</h6>
+                            </div>
+                            <!--add vendor to favorites button-->
+                            <div class="col-sm-4" th:if="${user}">
+                                <button type="submit" onclick="alert('Done!');">Add Vendor to Favorites</button>
+                            </div>
                         </div>
                         <br>
                     </div>
