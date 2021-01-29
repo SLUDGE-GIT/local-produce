@@ -49,10 +49,6 @@
                                 <i class="far fa-edit-tie fa-2x mb-4"></i>
                                 <a th:href="@{/vendor/edit}"><button class="btn btn-sm btn-info" id="editTagsBtn">Edit your profile</button></a>
                             </div>
-                            <div class="col-sm-4 text-center">
-                                <i class="far fa-edit-tie fa-2x mb-4"></i>
-                                <a th:href="@{/tags/add}"><button class="btn btn-sm btn-info" id="editProfileBtn">Add Tags</button></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,6 +69,9 @@
                         <img th:src="@{|${product.photo}|}" th:value="@{product.photo}" class="card-img-top mkp-img">
                         <div class="cards-body">
                             <h6 th:text="${product.name}">Product</h6>
+                            <a th:href="@{'/products/edit/' + ${product.id}}"><button class="btn btn-sm btn-info" id="editProductBtn" th:value="${product.id}">Edit Products</button></a>
+                            <a th:href="@{'/products/delete/' + ${product.id}}"><button class="btn btn-sm btn-info" id="deleteProductBtn" th:value="${product.id}">Delete Products</button></a>
+
                         </div>
                     </div>
                 </div>
