@@ -61,6 +61,7 @@ public class ProductController {
             model.addAttribute("user", user);
         }
 
+        model.addAttribute("title", "ADD PRODUCT");
 
         return "products/add";
 
@@ -84,6 +85,8 @@ public class ProductController {
         newProduct.setVendor(vendor);
         productRepository.save(newProduct);
 
+        model.addAttribute("title", "ADD PRODUCT");
+
         return "redirect:/vendor/profile";
     }
 
@@ -93,18 +96,17 @@ public class ProductController {
         Optional<Product> optionalProduct = productRepository.findById(productId);
         Product product = (Product) optionalProduct.get();
 
-        model.addAttribute("title", "Edit Product");
+        model.addAttribute("title", "EDIT PRODUCT");
         model.addAttribute("product", product);
 
         return "products/edit";
         }
 
     @PostMapping("products/edit/{productId}")
-    public String processEditProductForm(@PathVariable int productId, @ModelAttribute @Valid @RequestParam String name, @RequestParam String photo, @RequestParam String type, @RequestParam String description, @RequestParam boolean organic, Errors errors, Model model
-    ) {
-        if (errors.hasErrors()) {
-            return "redirect: vendor/profile";
-        }
+    public String processEditProductForm(@PathVariable int productId, @ModelAttribute @Valid @RequestParam String name,
+                                         @RequestParam String photo, @RequestParam String type, @RequestParam String description,
+                                         @RequestParam boolean organic) {
+
         Optional<Product> optionalProduct = productRepository.findById(productId);
         Product product = (Product) optionalProduct.get();
 
@@ -114,30 +116,8 @@ public class ProductController {
         product.setDescription(description);
         product.setOrganic(organic);
 
-
         productRepository.save(product);
-        return "redirect: vendor/profile";
+
+        return "redirect:/vendor/profile";
     }
-    }
-
-
-
-//    @GetMapping("delete")
-//    public String displayDeleteProductForm (Model model){
-//
-//        model.addAttribute("title", "Delete Products");
-//        model.addAttribute("products", ProductData.findByValue());///?????????????
-//
-//        return "products/delete";
-//    }
-//
-//    @PostMapping("delete")
-//    public String processDeleteProductForm (@RequestParam int[] productIds) {
-//
-//        for (int id : productIds) {
-//            ProductData.remove(id);
-//        }
-//        return "redirect:";
-//    }
-    
-//}
+}
